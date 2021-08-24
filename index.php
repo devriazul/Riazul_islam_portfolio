@@ -1,35 +1,3 @@
-<?php
-
-if (isset($_POST['btn'])){
-
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $subject = $_POST['subject'];
-    $message = $_POST['message'];
-    //Error checking section
-    $error = [];
-    if (empty($_POST['name'])){
-        $error['name'] = 'Insert your Name!';
-    }
-    if (empty($_POST['email'])){
-        $error['email'] = 'Insert your Email!';
-    }
-    if (empty($_POST['subject'])){
-        $error['subject'] = 'Insert your Subject!';
-    }
-    if (empty($_POST['message'])){
-        $error['message'] = 'Insert your message!';
-    }
-    //Mail
-    $to = 'engr.riazul@gmail.com';
-    $from = 'From'.$email;
-    $subject = 'Subject: '.$subject;
-    $body = "Name: ".$name. "\n Subject: ".$subject."\n Email: ".$email."\n Message: ".$message;
-
-    mail($to, $from, $body);
-
-}
-?>
 
 <!DOCTYPE html>
 <!-- Created By CodingNepal -->
@@ -246,7 +214,7 @@ if (isset($_POST['btn'])){
                     <div class="text">Message Me</div>
                     <form action="" method="POST">
                         <div class="field" style="padding-bottom: 10px;">
-                            <input type="text" placeholder="Name" name="name" value="<?php if (isset($name)) echo $name; ?>">
+                            <input type="text" placeholder="Name" name="name" value="<?php if (isset($name)) echo $name; ?>" required>
                             <span style="color:red;">
                                 <?php
                                 if (isset($error['name'])){
@@ -256,7 +224,7 @@ if (isset($_POST['btn'])){
                             </span>
                         </div>
                         <div class="field email" style="padding-bottom: 10px;">
-                            <input type="email" placeholder="Email" name="email"  value="<?php if (isset($email)) echo $email; ?>">
+                            <input type="email" placeholder="Email" name="email"  value="<?php if (isset($email)) echo $email; ?>" required>
                             <span style="color:red;">
                                 <?php
                                 if (isset($error['email'])){
@@ -266,7 +234,7 @@ if (isset($_POST['btn'])){
                             </span>
                         </div>
                         <div class="field" style="padding-bottom: 10px;">
-                            <input type="text" placeholder="Subject" name="subject"  value="<?php if (isset($subject)) echo $subject; ?>" >
+                            <input type="text" placeholder="Subject" name="subject"  value="<?php if (isset($subject)) echo $subject; ?>" required >
                             <span style="color:red;">
                                 <?php
                                 if (isset($error['subject'])){
@@ -276,7 +244,7 @@ if (isset($_POST['btn'])){
                             </span>
                         </div>
                         <div class="field textarea">
-                            <textarea cols="30" rows="10" placeholder="Type your message" name="message"  value="<?php if (isset($message)) echo $message; ?>"></textarea>
+                            <textarea cols="30" rows="10" placeholder="Type your message" name="message"  value="<?php if (isset($message)) echo $message; ?>" required></textarea>
                             <span style="color:red;">
                                 <?php
                                 if (isset($error['message'])){
@@ -289,6 +257,46 @@ if (isset($_POST['btn'])){
                             <button type="submit" value="Send Message" name="btn">Send message</button>
                         </div>
                     </form>
+                    
+                    <?php
+
+if (isset($_POST['btn'])){
+
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $subject = $_POST['subject'];
+    $message = $_POST['message'];
+    //Error checking section
+    $error = [];
+    if (empty($_POST['name'])){
+        $error['name'] = 'Insert your Name!';
+    }
+    if (empty($_POST['email'])){
+        $error['email'] = 'Insert your Email!';
+    }
+    if (empty($_POST['subject'])){
+        $error['subject'] = 'Insert your Subject!';
+    }
+    if (empty($_POST['message'])){
+        $error['message'] = 'Insert your message!';
+    }
+    //Mail
+    $to = 'engr.riazul@gmail.com';
+    $from = 'From'.$email;
+    $subject1 = ''.$subject;
+    $body = "Name: ".$name. "\n Subject: ".$subject1."\n Email: ".$email."\n Message: ".$message;
+
+    $check = mail($to, $from, $body);
+    if($check == true){
+        echo 'Send Response Successfully!';
+    }else{
+        echo 'Response Not Send Successfully!';
+    }
+
+}
+?>
+
+                    
                 </div>
             </div>
         </div>
